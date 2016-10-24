@@ -6,7 +6,7 @@
 
   It should have **almost** the same output with the original work,  for mxnet fans and those can't afford matlab :)
 
-[中文blog]()
+[中文blog](https://pangyupo.github.io/2016/10/22/mxnet-mtcnn/)
 
 ## Requirement	  
 
