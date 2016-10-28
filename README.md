@@ -28,6 +28,10 @@ run:
 
 you can change `ctx` to `mx.gpu(0)` for faster detection
 
+update 20161028
+
+by setting ``num_worker=4``  ``accurate_landmark=False`` we can reduce the detection time by 1/4-1/3, the bboxes are still the same, but we skip the last landmark fine-tune stage( mtcnn_v1 ). 
+
 ## Results
 
 ![big4](http://7xsc78.com1.z0.glb.clouddn.com/face_mtcnn.png)

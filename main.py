@@ -5,14 +5,15 @@ import cv2
 import os
 import time
 
-detector = MtcnnDetector(model_folder='model', ctx=mx.cpu(0))
+detector = MtcnnDetector(model_folder='model', ctx=mx.cpu(0), num_worker = 4 , accurate_landmark = False)
 
 
-img = cv2.imread('test2.jpg')
+img = cv2.imread('test.jpg')
 
-t1 = time.time()
-results = detector.detect_face(img, False)
-print 'time: ',time.time() - t1
+for i in range(4):
+    t1 = time.time()
+    results = detector.detect_face(img)
+    print 'time: ',time.time() - t1
 
 if results is not None:
 
@@ -40,7 +41,7 @@ while True:
     img = cv2.resize(frame, (320,180))
 
     t1 = time.time()
-    results = detector.detect_face(img, False)
+    results = detector.detect_face(img)
     print 'time: ',time.time() - t1
 
     if results is None:
