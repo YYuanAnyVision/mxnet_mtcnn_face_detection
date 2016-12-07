@@ -8,17 +8,21 @@ import time
 detector = MtcnnDetector(model_folder='model', ctx=mx.cpu(0), num_worker = 4 , accurate_landmark = False)
 
 
-img = cv2.imread('test.jpg')
+img = cv2.imread('test2.jpg')
 
-for i in range(4):
-    t1 = time.time()
-    results = detector.detect_face(img)
-    print 'time: ',time.time() - t1
+# run detector
+results = detector.detect_face(img)
 
 if results is not None:
 
     total_boxes = results[0]
     points = results[1]
+    
+    # extract aligned face chips
+    chips = detector.extract_image_chips(img, points, 144, 0.37)
+    for i, chip in enumerate(chips):
+        cv2.imshow('chip_'+str(i), chip)
+        cv2.imwrite('chip_'+str(i)+'.png', chip)
 
     draw = img.copy()
     for b in total_boxes:
